@@ -24,6 +24,11 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 
+/**
+ * Created by Godwin on 4/21/2018 12:32 PM for json.
+ *
+ * @author : Godwin Joseph Kurinjikattu
+ */
 public class SimpleTextWidget {
     private JPanel container;
     private JPanel inputContainer;

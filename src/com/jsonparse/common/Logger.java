@@ -1,5 +1,10 @@
 package com.jsonparse.common;
 
+/**
+ * Created by Godwin on 4/21/2018 12:32 PM for json.
+ *
+ * @author : Godwin Joseph Kurinjikattu
+ */
 public class Logger {
     public static void i(String message) {
         System.out.println(message);
@@ -10,7 +15,7 @@ public class Logger {
     }
 
     public static void e(String message) {
-        System.out.println(message);
+        System.err.println(message);
     }
 
     public static void e(Throwable throwable) {

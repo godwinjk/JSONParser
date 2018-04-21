@@ -8,6 +8,9 @@ import com.jsonparse.ui.forms.SimpleTextWidget;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * crea
+ */
 public class ParserWidget extends JPanel implements IParserWidget {
     private Project mProject;
     private Disposable mParent;

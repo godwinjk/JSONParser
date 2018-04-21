@@ -6,6 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Created by Godwin on 4/21/2018 12:32 PM for json.
+ *
+ * @author : Godwin Joseph Kurinjikattu
+ */
 public class TreeNodeCreator {
     public static DefaultTreeModel getTreeModel(String jsonString) {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("");
