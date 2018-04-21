@@ -30,4 +30,4 @@ godwinjoseph.k@gmail.com
 
 ## Uninstalling
 
-Inside your IDE, select Preferences -> Plugins, then find the `Api Debugger` plugin. Click Uninstall.
+Inside your IDE, select Preferences -> Plugins, then find the `JSON Parser` plugin. Click Uninstall.
