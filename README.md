@@ -15,7 +15,7 @@ A IntelliJ plugin to help you easily format and validate JSON string. You can fi
 
 ## Changelog
 
-Changes exist in the [releases tab](https://github.com/fingerart/ApiDebugger/releases).
+Changes exist in the [releases tab](https://gitlab.com/godwinjoseph/JSONParser/tags).
 
 ## How to Contribute
 
