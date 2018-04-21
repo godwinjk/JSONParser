@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="935dc07b-41f5-4879-8b0f-64af696d93de" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/Screenshots/Capture.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Screenshots/Capture1.PNG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/json/META-INF/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/json/META-INF/plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/json/com/jsonparse/ParserComponent$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/json/com/jsonparse/ParserComponent$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/json/com/jsonparse/ParserComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/json/com/jsonparse/ParserComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/json/com/jsonparse/ParserToolWindowFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/json/com/jsonparse/ParserToolWindowFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/json/com/jsonparse/common/Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/json/com/jsonparse/common/Logger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/json/com/jsonparse/common/ViewUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/json/com/jsonparse/common/ViewUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/json/com/jsonparse/ui/ParserToolWindowPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/json/com/jsonparse/ui/ParserToolWindowPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/json/com/jsonparse/ui/ParserWidget.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/json/com/jsonparse/ui/ParserWidget.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/json/com/jsonparse/ui/TreeNodeCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/json/com/jsonparse/ui/TreeNodeCreator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/json/com/jsonparse/ui/forms/SimpleTextWidget$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/json/com/jsonparse/ui/forms/SimpleTextWidget$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/json/com/jsonparse/ui/forms/SimpleTextWidget.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/json/com/jsonparse/ui/forms/SimpleTextWidget.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +30,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="plugin.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
+      <file leaf-file-name="ParserToolWindowFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ParserToolWindowFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="221">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -29,8 +45,54 @@
       <file leaf-file-name="ParserWidget.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/ParserWidget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+            <state relative-caret-position="153">
+              <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1157#1158#0" expanded="true" />
+                <element signature="e#1234#1235#0" expanded="true" />
+                <element signature="e#1288#1289#0" expanded="true" />
+                <element signature="e#1317#1318#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Logger.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/jsonparse/common/Logger.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="13" column="18" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/jsonparse/common/ViewUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParserToolWindowPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/ParserToolWindowPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParserComponent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ParserComponent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="116">
+              <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -41,8 +103,8 @@
       <file leaf-file-name="SimpleTextWidget.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/forms/SimpleTextWidget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
+            <state relative-caret-position="459">
+              <caret line="30" column="3" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2825#3857#0" expanded="true" />
@@ -52,16 +114,30 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="IParserWidget.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/IParserWidget.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="TreeNodeCreator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/TreeNodeCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="39" column="47" lean-forward="true" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
+            <state relative-caret-position="204">
+              <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleTextWidget.form" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/forms/SimpleTextWidget.form">
+          <provider selected="true" editor-type-id="ui-designer" />
         </entry>
       </file>
     </leaf>
@@ -90,21 +166,22 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/jsonparse/JsonParser.java" />
         <option value="$PROJECT_DIR$/src/com/jsonparse/JsonParserToolWindowFactory.java" />
-        <option value="$PROJECT_DIR$/src/com/jsonparse/ui/ParserToolWindowPanel.java" />
-        <option value="$PROJECT_DIR$/src/com/jsonparse/ui/IParserWidget.java" />
         <option value="$PROJECT_DIR$/src/com/jsonparse/ui/forms/SimpleTextForm.form" />
-        <option value="$PROJECT_DIR$/src/com/jsonparse/common/ViewUtil.java" />
         <option value="$PROJECT_DIR$/src/com/jsonparse/ui/forms/SimpleTextWindow.java" />
         <option value="$PROJECT_DIR$/src/com/jsonparse/common/Log.java" />
-        <option value="$PROJECT_DIR$/src/com/jsonparse/common/Logger.java" />
-        <option value="$PROJECT_DIR$/src/com/jsonparse/ParserComponent.java" />
-        <option value="$PROJECT_DIR$/src/com/jsonparse/ui/ParserWidget.java" />
-        <option value="$PROJECT_DIR$/src/com/jsonparse/ParserToolWindowFactory.java" />
         <option value="$PROJECT_DIR$/src/com/jsonparse/ui/TreeNodeCreater.java" />
-        <option value="$PROJECT_DIR$/src/com/jsonparse/ui/forms/SimpleTextWidget.form" />
-        <option value="$PROJECT_DIR$/src/com/jsonparse/ui/forms/SimpleTextWidget.java" />
-        <option value="$PROJECT_DIR$/src/com/jsonparse/ui/TreeNodeCreator.java" />
         <option value="$PROJECT_DIR$/resources/META-INF/plugin.xml" />
+        <option value="$PROJECT_DIR$/src/com/jsonparse/ui/ParserWidget.java" />
+        <option value="$PROJECT_DIR$/src/com/jsonparse/ui/java.java" />
+        <option value="$PROJECT_DIR$/src/com/jsonparse/common/Logger.java" />
+        <option value="$PROJECT_DIR$/src/com/jsonparse/common/ViewUtil.java" />
+        <option value="$PROJECT_DIR$/src/com/jsonparse/ui/forms/SimpleTextWidget.java" />
+        <option value="$PROJECT_DIR$/src/com/jsonparse/ui/IParserWidget.java" />
+        <option value="$PROJECT_DIR$/src/com/jsonparse/ui/ParserToolWindowPanel.java" />
+        <option value="$PROJECT_DIR$/src/com/jsonparse/ParserComponent.java" />
+        <option value="$PROJECT_DIR$/src/com/jsonparse/ParserToolWindowFactory.java" />
+        <option value="$PROJECT_DIR$/src/com/jsonparse/ui/TreeNodeCreator.java" />
+        <option value="$PROJECT_DIR$/src/com/jsonparse/ui/forms/SimpleTextWidget.form" />
       </list>
     </option>
   </component>
@@ -122,7 +199,7 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -209,6 +286,11 @@
               <item name="json" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="json" type="b2602c69:ProjectViewProjectNode" />
+              <item name="json" type="462c0819:PsiDirectoryNode" />
+              <item name="Screenshots" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="json" type="b2602c69:ProjectViewProjectNode" />
@@ -325,7 +407,21 @@
       <option name="project" value="LOCAL" />
       <updated>1524293456761</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="1. Header change">
+      <created>1524294230450</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1524294230450</updated>
+    </task>
+    <task id="LOCAL-00003" summary="1. Form change">
+      <created>1524295765194</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1524295765194</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -341,7 +437,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.33449477" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33447686" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -365,26 +461,28 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1. Plugin.xml : Plugin description change" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. Plugin.xml : Plugin description change" />
+    <MESSAGE value="1. Header change" />
+    <MESSAGE value="1. Form change" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. Form change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/jsonparse/ui/TreeNodeCreator.java</url>
-          <line>29</line>
+          <line>34</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/jsonparse/ui/TreeNodeCreator.java</url>
-          <line>36</line>
+          <line>41</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/jsonparse/ui/forms/SimpleTextWidget.java</url>
-          <line>90</line>
+          <line>95</line>
           <properties />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
@@ -462,6 +560,10 @@
           <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1157#1158#0" expanded="true" />
+            <element signature="e#1234#1235#0" expanded="true" />
+            <element signature="e#1288#1289#0" expanded="true" />
+            <element signature="e#1317#1318#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -568,13 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/common/ViewUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-9.0.1/lib/src.zip!/java.desktop/javax/swing/JPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
@@ -582,31 +677,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/IParserWidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ParserComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="637">
-          <caret line="55" column="33" selection-start-line="55" selection-start-column="33" selection-end-line="55" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-9.0.1/lib/src.zip!/java.desktop/java/awt/CardLayout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
           <caret line="58" column="13" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/common/Logger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="16" column="36" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -621,45 +695,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ParserToolWindowFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/ParserToolWindowPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="34" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/com/intellij/openapi/editor/impl/DocumentImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12869">
           <caret line="855" column="9" selection-start-line="855" selection-start-column="9" selection-end-line="855" selection-end-column="9" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/ParserWidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/forms/SimpleTextWidget.form">
-      <provider selected="true" editor-type-id="ui-designer" />
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-api.jar!/com/intellij/openapi/editor/event/DocumentAdapter.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -689,10 +730,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="29" column="48" lean-forward="true" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/java.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/ParserWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1157#1158#0" expanded="true" />
+            <element signature="e#1234#1235#0" expanded="true" />
+            <element signature="e#1288#1289#0" expanded="true" />
+            <element signature="e#1317#1318#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/common/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="13" column="18" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/common/ViewUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/forms/SimpleTextWidget.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
+        <state relative-caret-position="459">
+          <caret line="30" column="3" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2825#3857#0" expanded="true" />
@@ -701,22 +784,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/TreeNodeCreator.java">
+    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/IParserWidget.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="39" column="47" lean-forward="true" selection-start-line="39" selection-start-column="47" selection-end-line="39" selection-end-column="47" />
+        <state relative-caret-position="119">
+          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/ParserToolWindowPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/META-INF/plugin.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ParserComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="116">
+          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ParserToolWindowFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/TreeNodeCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jsonparse/ui/forms/SimpleTextWidget.form">
+      <provider selected="true" editor-type-id="ui-designer" />
     </entry>
   </component>
   <component name="masterDetails">
