@@ -4,7 +4,7 @@ A IntelliJ plugin to help you easily format and validate JSON string. You can fi
 
 ## Preview
 
-![JSON Parser](https://gitlab.com/godwinjoseph/JSONParser/edit/master/README.md)
+![JSON Parser](https://gitlab.com/godwinjoseph/JSONParser/blob/master/Screenshots/Capture1.PNG)
 
 ## Installation
 
