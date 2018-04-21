@@ -1,0 +1,38 @@
+<idea-plugin>
+    <id>com.godwin.json.parser</id>
+    <name>Json Parser</name>
+    <version>1.0</version>
+    <vendor email="godwinjoseph.k.com" >Godwin</vendor>
+
+    <description><![CDATA[
+      Simple and elegant json parser. <br>
+    ]]></description>
+
+    <change-notes><![CDATA[
+      <h2>Version 1.0</h1>
+      Parse json string only.
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <toolWindow id="Json Parser" anchor="right"
+                    factoryClass="com.jsonparse.ParserToolWindowFactory"/>
+    </extensions>
+
+    <project-components>
+        <component>
+            <implementation-class>com.jsonparse.ParserComponent</implementation-class>
+        </component>
+    </project-components>
+</idea-plugin>
