@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.godwin.json.parser</id>
     <name>Json Parser</name>
-    <version>1.1</version>
+    <version>1.2</version>
     <vendor email="godwinjoseph.k.com">Godwin</vendor>
 
     <description><![CDATA[
@@ -13,6 +13,13 @@
       Parse VALID JSON string only.
       <h2>Version 1.1</h1>
       Support for all platforms.
+      <h2>Version 1.2</h1>
+      Added 3 options
+      <ul>
+            <li>Pretty print</li>
+            <li>Raw</li>
+            <li>Tree</li>
+       </ul>
     ]]>
     </change-notes>
 

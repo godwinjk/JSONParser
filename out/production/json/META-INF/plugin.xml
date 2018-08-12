@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.godwin.json.parser</id>
     <name>Json Parser</name>
-    <version>1.0</version>
+    <version>1.2</version>
     <vendor email="godwinjoseph.k.com">Godwin</vendor>
 
     <description><![CDATA[
@@ -11,6 +11,15 @@
     <change-notes><![CDATA[
       <h2>Version 1.0</h1>
       Parse VALID JSON string only.
+      <h2>Version 1.1</h1>
+      Support for all platforms.
+      <h2>Version 1.2</h1>
+      Added 3 options
+      <ul>
+            <li>Pretty print</li>
+            <li>Raw</li>
+            <li>Tree</li>
+       </ul>
     ]]>
     </change-notes>
 
@@ -20,9 +29,9 @@
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <!-- uncomment to enable plugin in all products
-    <depends>com.intellij.modules.lang</depends>
-    -->
 
+    -->
+    <depends>com.intellij.modules.lang</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->

@@ -1,6 +1,9 @@
 package com.jsonparse;
 
 import com.intellij.ide.util.PropertiesComponent;
+import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationType;
+import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.ActionPlaces;
 import com.intellij.openapi.actionSystem.ActionToolbar;
@@ -27,6 +30,7 @@ import javax.swing.*;
  * @author : Godwin Joseph Kurinjikattu
  */
 public class ParserComponent extends AbstractProjectComponent {
+    long time = 0;
 
     protected ParserComponent(Project project) {
         super(project);
@@ -42,6 +46,7 @@ public class ParserComponent extends AbstractProjectComponent {
         toolWindow.getContentManager().addContent(content);
         ((ToolWindowManagerEx) ToolWindowManager.getInstance(myProject)).addToolWindowManagerListener(getToolWindowListener());
     }
+
     private Content createParserContentPanel(ToolWindow toolWindow) {
         toolWindow.setToHideOnEmptyContent(true);
 
@@ -56,12 +61,14 @@ public class ParserComponent extends AbstractProjectComponent {
 
         return content;
     }
+
     private IParserWidget createContent(Content content) {
         IParserWidget debuggerWidget = new ParserWidget(myProject, content);
         debuggerWidget.createParserSession();
 
         return debuggerWidget;
     }
+
     private ActionToolbar createToolBar(IParserWidget debuggerWidget) {
         DefaultActionGroup group = new DefaultActionGroup();
 
@@ -69,6 +76,7 @@ public class ParserComponent extends AbstractProjectComponent {
         toolbar.setOrientation(SwingConstants.VERTICAL);
         return toolbar;
     }
+
     private ToolWindowManagerListener getToolWindowListener() {
         return new ToolWindowManagerListener() {
             @Override
@@ -83,6 +91,12 @@ public class ParserComponent extends AbstractProjectComponent {
                     if (toolWindow.isVisible() && toolWindow.getContentManager().getContentCount() == 0) {
                         Logger.d("DebuggerComponent.isVisible ContentCount>0");
                         initParser(toolWindow);
+                    } else if (!toolWindow.isVisible()) {
+                        if (time <= 0 || time < System.currentTimeMillis() - 3600000) {
+                            time = System.currentTimeMillis();
+                            Notifications.Bus.notify(new Notification("Json Parser", "Like it", "Like this plugin? <b>Give it a star</b>  <a href=https://plugins.jetbrains.com/plugin/10650-json-parser>Json Parser</a> and spread the word", NotificationType.INFORMATION));
+                        }
+
                     }
                 }
             }

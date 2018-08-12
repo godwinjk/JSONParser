@@ -1,9 +1,5 @@
 package com.jsonparse.ui.forms;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
@@ -15,13 +11,9 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.jsonparse.ui.TreeNodeCreator;
 import org.apache.http.util.TextUtils;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 
 /**
@@ -29,10 +21,13 @@ import java.awt.*;
  *
  * @author : Godwin Joseph Kurinjikattu
  */
-public class SimpleTextWidget {
+public class ParserWidget {
     private JPanel container;
     private JPanel inputContainer;
-    private JTree outputTree;
+    private JPanel outputContainer;
+    private JPanel inputEditorContainer;
+    private JButton parseButton;
+    //    private JTree outputTree;
 
     private GridLayoutManager mGridLayout;
 
@@ -42,7 +37,9 @@ public class SimpleTextWidget {
     private Project mProject;
     private Disposable mParent;
 
-    public SimpleTextWidget(Project project, Disposable disposable) {
+    private ParserBodyWidget mBodyWidget;
+
+    public ParserWidget(Project project, Disposable disposable) {
         this.mProject = project;
         this.mParent = disposable;
 
@@ -50,11 +47,12 @@ public class SimpleTextWidget {
         this.mInputEditor = createEditor();
         this.mOutputEditor = createEditor();
 
-        inputContainer.add(mInputEditor.getComponent(), BorderLayout.CENTER);
+        this.mBodyWidget = new ParserBodyWidget(mProject);
+
+        this.inputEditorContainer.add(mInputEditor.getComponent(), BorderLayout.CENTER);
+        this.outputContainer.add(this.mBodyWidget.container, BorderLayout.CENTER);
 
         setEventListeners();
-        changeIcon();
-        setEmptyTree();
     }
 
     private Editor createEditor() {
@@ -74,59 +72,35 @@ public class SimpleTextWidget {
         editorSettings.setLineNumbersShown(true);
         editorSettings.setCaretRowShown(true);
 
-
 //        ((EditorEx) editor).setHighlighter(createHighlighter(FileTypes.PLAIN_TEXT));
         return editor;
     }
 
     private void setEventListeners() {
+        parseButton.addActionListener(e -> {
+            String jsonString = mInputEditor.getDocument().getText();
+            showBody(jsonString);
+        });
         mInputEditor.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void documentChanged(DocumentEvent e) {
                 if (e != null && !TextUtils.isEmpty(e.getDocument().getText())) {
-                    try {
-                        String jsonString = e.getDocument().getText();
-
-                        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                        JsonParser parser = new JsonParser();
-                        JsonElement je = parser.parse(jsonString);
-                        String prettyJsonString = gson.toJson(je);
-
-                        DefaultTreeModel model = TreeNodeCreator.getTreeModel(prettyJsonString);
-                        outputTree.setModel(model);
-                        expandAllNodes(outputTree, 0, outputTree.getRowCount());
-//                        mOutputEditor.getDocument().setText(prettyJsonString);
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
+//                    try {
+//                        showBody(e.getDocument().getText());
+//                    } catch (Exception ex) {
+//                        ex.printStackTrace();
+//                    }
                 }
             }
         });
     }
 
-    private void changeIcon() {
-        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) outputTree.getCellRenderer();
-        Icon icon = new ImageIcon();
-        renderer.setClosedIcon(icon);
-        renderer.setOpenIcon(icon);
-    }
+    private void showBody(String jsonString) {
 
-    private void setEmptyTree() {
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("");
+        mBodyWidget.showPretty(jsonString);
+        mBodyWidget.showRaw(jsonString);
+        mBodyWidget.showTree(jsonString);
 
-        DefaultTreeModel model = new DefaultTreeModel(root);
-        outputTree.setModel(model);
-
-    }
-
-    private void expandAllNodes(JTree tree, int startingIndex, int rowCount) {
-        for (int i = startingIndex; i < rowCount; ++i) {
-            tree.expandRow(i);
-        }
-
-        if (tree.getRowCount() != rowCount) {
-            expandAllNodes(tree, rowCount, tree.getRowCount());
-        }
     }
 
     public JPanel getContainer() {

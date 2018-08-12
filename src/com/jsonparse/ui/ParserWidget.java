@@ -3,7 +3,6 @@ package com.jsonparse.ui;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.components.JBPanel;
-import com.jsonparse.ui.forms.SimpleTextWidget;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,7 +39,7 @@ public class ParserWidget extends JPanel implements IParserWidget {
     }
 
     private JComponent createInnerDebuggerWidget() {
-        return new SimpleTextWidget(mProject, mParent).getContainer();
+        return new com.jsonparse.ui.forms.ParserWidget(mProject, mParent).getContainer();
     }
 
     @Override
