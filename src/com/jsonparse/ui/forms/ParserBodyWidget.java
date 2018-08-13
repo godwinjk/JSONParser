@@ -1,9 +1,6 @@
 package com.jsonparse.ui.forms;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import com.intellij.icons.AllIcons;
 import com.intellij.ide.highlighter.HtmlFileHighlighter;
 import com.intellij.ide.highlighter.HtmlFileType;
@@ -144,10 +141,6 @@ public class ParserBodyWidget {
     }
 
     private EditorHighlighter createHighlighter(LanguageFileType fileType) {
-//        FileType fileType = FileTypeManager.getInstance().getFileTypeByExtension("");
-//        if (fileType == null) {
-//            fileType = FileTypes.PLAIN_TEXT;
-//        }
 
         SyntaxHighlighter originalHighlighter = SyntaxHighlighterFactory.getSyntaxHighlighter(fileType, null, null);
         if (originalHighlighter == null) {
@@ -155,7 +148,7 @@ public class ParserBodyWidget {
         }
 
         EditorColorsScheme scheme = EditorColorsManager.getInstance().getGlobalScheme();
-        LayeredLexerEditorHighlighter highlighter = new LayeredLexerEditorHighlighter(getFileHighlighter(fileType), scheme);// TODO: 2017/8/3 HTML
+        LayeredLexerEditorHighlighter highlighter = new LayeredLexerEditorHighlighter(getFileHighlighter(fileType), scheme);
         highlighter.registerLayer(TextElementType, new LayerDescriptor(originalHighlighter, ""));
         return highlighter;
     }
@@ -187,18 +180,33 @@ public class ParserBodyWidget {
     }
 
     public void showPretty(String text) {
-        if (TextUtils.isEmpty(text))
-            return;
+
         try {
-            String prettyJsonString = getPrettyJson(text);
+            String prettyJsonString;
+            if (TextUtils.isEmpty(text)) {
+                prettyJsonString = "";
+            } else {
+                prettyJsonString = getPrettyJson(text);
+            }
 
             WriteCommandAction.runWriteCommandAction(mProject, () -> prettyEditor.getDocument().setText(prettyJsonString));
             LanguageFileType fileType = getFileType();
             ((EditorEx) prettyEditor).setHighlighter(createHighlighter(fileType));
+            prettyEditor.getDocument().setReadOnly(true);
         } catch (Exception e) {
-            e.printStackTrace();
-        }
+//            e.printStackTrace();
+            if (e instanceof JsonSyntaxException) {
+                String message = e.getMessage();
+                if (e.getCause() != null && !TextUtils.isEmpty(e.getCause().getMessage())) {
+                    message = e.getCause().getMessage();
+                }
+                String finalMessage = message;
+                WriteCommandAction.runWriteCommandAction(mProject, () -> prettyEditor.getDocument().setText(text + "\n\n\n" + finalMessage));
+                LanguageFileType fileType = getFileType();
 
+                ((EditorEx) prettyEditor).setHighlighter(createHighlighter(fileType));
+            }
+        }
     }
 
     public void showRaw(String text) {
@@ -212,8 +220,10 @@ public class ParserBodyWidget {
     }
 
     public void showTree(String jsonString) {
-        if (TextUtils.isEmpty(jsonString))
+        if (TextUtils.isEmpty(jsonString)) {
+            setEmptyTree();
             return;
+        }
         try {
             String prettyJsonString = getPrettyJson(jsonString);
 
@@ -221,7 +231,7 @@ public class ParserBodyWidget {
             outputTree.setModel(model);
             expandAllNodes(outputTree, 0, outputTree.getRowCount());
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 

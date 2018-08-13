@@ -2,6 +2,7 @@ package com.jsonparse;
 
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.notification.Notification;
+import com.intellij.notification.NotificationListener;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
 import com.intellij.openapi.actionSystem.ActionManager;
@@ -94,7 +95,12 @@ public class ParserComponent extends AbstractProjectComponent {
                     } else if (!toolWindow.isVisible()) {
                         if (time <= 0 || time < System.currentTimeMillis() - 3600000) {
                             time = System.currentTimeMillis();
-                            Notifications.Bus.notify(new Notification("Json Parser", "Like it", "Like this plugin? <b>Give it a star</b>  <a href=https://plugins.jetbrains.com/plugin/10650-json-parser>Json Parser</a> and spread the word", NotificationType.INFORMATION));
+                            Notifications.Bus.notify(new Notification(
+                                    "Json Parser",
+                                    "Like it",
+                                    "Like this plugin? <b>Give it a star</b>  <a href=https://plugins.jetbrains.com/plugin/10650-json-parser>Json Parser</a> and spread the word",
+                                    NotificationType.INFORMATION,
+                                    new NotificationListener.UrlOpeningListener(true)));
                         }
 
                     }
