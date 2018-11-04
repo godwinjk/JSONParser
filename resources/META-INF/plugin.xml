@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.godwin.json.parser</id>
     <name>Json Parser</name>
-    <version>1.2.1</version>
+    <version>1.3</version>
     <vendor email="godwinjoseph.k.com">Godwin</vendor>
 
     <description><![CDATA[
@@ -23,6 +23,8 @@
       <h2>Version 1.2.1</h1>
       1. Error message if not a valid json
       2. Bug fixes
+      <h2>Version 1.3</h1>
+      1. Bug fixes
     ]]>
     </change-notes>
 
