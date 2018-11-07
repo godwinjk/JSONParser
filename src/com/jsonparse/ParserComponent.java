@@ -98,7 +98,7 @@ public class ParserComponent extends AbstractProjectComponent {
                             Notifications.Bus.notify(new Notification(
                                     "Json Parser",
                                     "Like it",
-                                    "Like this plugin? <b>Give it a star</b>  <a href=https://plugins.jetbrains.com/plugin/10650-json-parser>Json Parser</a> and spread the word",
+                                    "Like this plugin? <a href=https://paypal.me/godwinj>Donate</a> or <b>Give it a star</b>  <a href=https://plugins.jetbrains.com/plugin/10650-json-parser>Json Parser</a> and spread the word",
                                     NotificationType.INFORMATION,
                                     new NotificationListener.UrlOpeningListener(true)));
                         }

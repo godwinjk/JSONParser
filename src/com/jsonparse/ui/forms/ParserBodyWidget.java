@@ -189,19 +189,27 @@ public class ParserBodyWidget {
                 prettyJsonString = getPrettyJson(text);
             }
 
-            WriteCommandAction.runWriteCommandAction(mProject, () -> prettyEditor.getDocument().setText(prettyJsonString));
+            WriteCommandAction.runWriteCommandAction(mProject, () -> {
+                prettyEditor.getDocument().setReadOnly(false);
+                prettyEditor.getDocument().setText(prettyJsonString);
+                prettyEditor.getDocument().setReadOnly(true);
+            });
             LanguageFileType fileType = getFileType();
             ((EditorEx) prettyEditor).setHighlighter(createHighlighter(fileType));
-            prettyEditor.getDocument().setReadOnly(true);
+
         } catch (Exception e) {
 //            e.printStackTrace();
             if (e instanceof JsonSyntaxException) {
                 String message = e.getMessage();
-                if (e.getCause() != null && !TextUtils.isEmpty(e.getCause().getMessage())) {
+                if (TextUtils.isEmpty(message) && e.getCause() != null && !TextUtils.isEmpty(e.getCause().getMessage())) {
                     message = e.getCause().getMessage();
                 }
                 String finalMessage = message;
-                WriteCommandAction.runWriteCommandAction(mProject, () -> prettyEditor.getDocument().setText(text + "\n\n\n" + finalMessage));
+                WriteCommandAction.runWriteCommandAction(mProject, () -> {
+                    prettyEditor.getDocument().setReadOnly(false);
+                    prettyEditor.getDocument().setText(text + "\n\n\n" + finalMessage);
+                    prettyEditor.getDocument().setReadOnly(true);
+                });
                 LanguageFileType fileType = getFileType();
 
                 ((EditorEx) prettyEditor).setHighlighter(createHighlighter(fileType));
@@ -210,7 +218,7 @@ public class ParserBodyWidget {
     }
 
     public void showRaw(String text) {
-        if (TextUtils.isEmpty(text))
+        if (null == text)
             return;
         try {
             WriteCommandAction.runWriteCommandAction(mProject, () -> rawEditor.getDocument().setText(text));
