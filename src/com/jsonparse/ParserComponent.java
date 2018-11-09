@@ -21,6 +21,8 @@ import com.jsonparse.common.Logger;
 import com.jsonparse.ui.IParserWidget;
 import com.jsonparse.ui.ParserToolWindowPanel;
 import com.jsonparse.ui.ParserWidget;
+import com.jsonparse.ui.action.AddTabAction;
+import com.jsonparse.ui.action.CloseTabAction;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -72,6 +74,8 @@ public class ParserComponent extends AbstractProjectComponent {
 
     private ActionToolbar createToolBar(IParserWidget debuggerWidget) {
         DefaultActionGroup group = new DefaultActionGroup();
+        group.add(new AddTabAction(debuggerWidget));
+        group.add(new CloseTabAction(debuggerWidget));
 
         ActionToolbar toolbar = ActionManager.getInstance().createActionToolbar(ActionPlaces.UNKNOWN, group, false);
         toolbar.setOrientation(SwingConstants.VERTICAL);

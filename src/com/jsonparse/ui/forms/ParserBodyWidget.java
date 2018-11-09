@@ -17,8 +17,6 @@ import com.intellij.openapi.editor.EditorFactory;
 import com.intellij.openapi.editor.EditorSettings;
 import com.intellij.openapi.editor.colors.EditorColorsManager;
 import com.intellij.openapi.editor.colors.EditorColorsScheme;
-import com.intellij.openapi.editor.event.DocumentAdapter;
-import com.intellij.openapi.editor.event.DocumentEvent;
 import com.intellij.openapi.editor.ex.EditorEx;
 import com.intellij.openapi.editor.ex.util.LayerDescriptor;
 import com.intellij.openapi.editor.ex.util.LayeredLexerEditorHighlighter;
@@ -131,11 +129,6 @@ public class ParserBodyWidget {
         editorSettings.setLineNumbersShown(true);
         editorSettings.setCaretRowShown(true);
 
-        editor.getDocument().addDocumentListener(new DocumentAdapter() {
-            @Override
-            public void documentChanged(DocumentEvent e) {
-            }
-        });
         ((EditorEx) editor).setHighlighter(createHighlighter(FileTypes.PLAIN_TEXT));
         return editor;
     }
@@ -190,9 +183,10 @@ public class ParserBodyWidget {
             }
 
             WriteCommandAction.runWriteCommandAction(mProject, () -> {
-                prettyEditor.getDocument().setReadOnly(false);
-                prettyEditor.getDocument().setText(prettyJsonString);
-                prettyEditor.getDocument().setReadOnly(true);
+                Document document= prettyEditor.getDocument();
+                document.setReadOnly(false);
+                document.setText(prettyJsonString);
+                document.setReadOnly(true);
             });
             LanguageFileType fileType = getFileType();
             ((EditorEx) prettyEditor).setHighlighter(createHighlighter(fileType));
@@ -206,9 +200,10 @@ public class ParserBodyWidget {
                 }
                 String finalMessage = message;
                 WriteCommandAction.runWriteCommandAction(mProject, () -> {
-                    prettyEditor.getDocument().setReadOnly(false);
-                    prettyEditor.getDocument().setText(text + "\n\n\n" + finalMessage);
-                    prettyEditor.getDocument().setReadOnly(true);
+                    Document document= prettyEditor.getDocument();
+                    document.setReadOnly(false);
+                    document.setText(text + "\n\n\n" + finalMessage);
+                    document.setReadOnly(true);
                 });
                 LanguageFileType fileType = getFileType();
 
