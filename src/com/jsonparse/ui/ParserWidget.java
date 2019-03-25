@@ -19,7 +19,6 @@ public class ParserWidget extends JPanel implements IParserWidget {
     private Disposable mParent;
     private JBPanel<JBPanel> mPanel;
     private IParserTabs mTabs;
-    private JComponent mInnerDebuggerWidget;
 
     public ParserWidget(Project project, Disposable disposable) {
         super(new BorderLayout());
@@ -29,25 +28,14 @@ public class ParserWidget extends JPanel implements IParserWidget {
         mPanel.add(this, BorderLayout.CENTER);
     }
 
-    private IParserTabs setupTabs() {
-        IParserTabs tabs = createTabPanel();
-        tabs.addListener(createTabsListener());
-        remove(mInnerDebuggerWidget);
-        addTab(mInnerDebuggerWidget, tabs);
-        add(tabs.getComponent(), BorderLayout.CENTER);
-        mInnerDebuggerWidget = null;
-        return tabs;
-    }
 
     private ParserTabsIml.DebuggerTabListener createTabsListener() {
-        return this::removeTabbedPanel;
-    }
+        return new ParserTabsIml.DebuggerTabListener() {
+            @Override
+            public void onLast() {
 
-    private void removeTabbedPanel() {
-        mInnerDebuggerWidget = mTabs.getCurrentComponent();
-        remove(mTabs.getComponent());
-//        mTabs = null;
-        add(mInnerDebuggerWidget, BorderLayout.CENTER);
+            }
+        };
     }
 
 
@@ -56,15 +44,16 @@ public class ParserWidget extends JPanel implements IParserWidget {
     }
 
     private void addTab(JComponent innerDebuggerWidget, IParserTabs tabs) {
-        String uniqueName = generateUniqueName("Tab", tabs);//TODO configuration
+        String uniqueName = generateUniqueName(tabs);
         tabs.addTab(innerDebuggerWidget, uniqueName);
     }
 
-    private  String generateUniqueName(String suggestedName, IParserTabs tabs) {
+    private String generateUniqueName(IParserTabs tabs) {
         Set<String> names = Sets.newHashSet();
         for (int i = 0; i < tabs.getTabCount(); i++) {
             names.add(tabs.getTitleAt(i));
         }
+        String suggestedName = "Parser";
         String newSdkName = suggestedName;
         int i = 0;
         while (names.contains(newSdkName)) {
@@ -76,24 +65,33 @@ public class ParserWidget extends JPanel implements IParserWidget {
     @Override
     public void createParserSession() {
         JComponent innerDebuggerWidget = createInnerDebuggerWidget();
-        if (mInnerDebuggerWidget == null && mTabs == null) {
-            mInnerDebuggerWidget = innerDebuggerWidget;
-            add(mInnerDebuggerWidget, BorderLayout.CENTER);
-        }else {
-            if (mTabs == null) {
-                mTabs = setupTabs();
-            }
-            addTab(innerDebuggerWidget, mTabs);
+//
+        setupTabs(innerDebuggerWidget);
+    }
+
+    private void setupTabs(JComponent nextComponent) {
+        if (null == mTabs) {
+            mTabs = createTabPanel();
+            mTabs.addListener(createTabsListener());
+            add(mTabs.getComponent(), BorderLayout.CENTER);
+
         }
+        addTab(nextComponent, mTabs);
     }
 
     @Override
     public void closeCurrentParserSession() {
-        mTabs.closeCurrentTab();
+        if (mTabs != null)
+            mTabs.closeCurrentTab();
+    }
+
+    @Override
+    public int getTabCount() {
+        return mTabs==null? 0:mTabs.getTabCount();
     }
 
     private JComponent createInnerDebuggerWidget() {
-        return new com.jsonparse.ui.forms.ParserWidget(mProject, mParent).getContainer();
+        return new com.jsonparse.ui.forms.ParserWidget(mProject, mParent, this).getContainer();
     }
 
     @Override

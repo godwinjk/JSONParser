@@ -43,7 +43,15 @@
         <toolWindow id="Json Parser" anchor="right"
                     factoryClass="com.jsonparse.ParserToolWindowFactory"/>
     </extensions>
+    <actions>
 
+        <action id="ParserActionId" class="com.jsonparse.ui.action.OpenParserAction" text="Json Parser"
+                description="Open in Json Parser">
+            <add-to-group group-id="EditMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift alt J" second-keystroke="ctrl alt J"/>
+        </action>
+
+    </actions>
     <project-components>
         <component>
             <implementation-class>com.jsonparse.ParserComponent</implementation-class>

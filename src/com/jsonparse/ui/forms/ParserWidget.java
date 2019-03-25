@@ -1,5 +1,6 @@
 package com.jsonparse.ui.forms;
 
+import com.intellij.lang.PsiBuilder;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
@@ -11,6 +12,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.jsonparse.ui.IParserWidget;
 import org.apache.http.util.TextUtils;
 
 import javax.swing.*;
@@ -27,27 +29,21 @@ public class ParserWidget {
     private JPanel outputContainer;
     private JPanel inputEditorContainer;
     private JButton parseButton;
-    //    private JTree outputTree;
-
-    private GridLayoutManager mGridLayout;
 
     private Editor mInputEditor;
-    private Editor mOutputEditor;
 
     private Project mProject;
     private Disposable mParent;
 
     private ParserBodyWidget mBodyWidget;
 
-    public ParserWidget(Project project, Disposable disposable) {
+    public ParserWidget(Project project, Disposable disposable, IParserWidget parserWidget) {
         this.mProject = project;
         this.mParent = disposable;
 
-        this.mGridLayout = (GridLayoutManager) container.getLayout();
         this.mInputEditor = createEditor();
-        this.mOutputEditor = createEditor();
 
-        this.mBodyWidget = new ParserBodyWidget(mProject);
+        this.mBodyWidget = new ParserBodyWidget(mProject,parserWidget);
 
         this.inputEditorContainer.add(mInputEditor.getComponent(), BorderLayout.CENTER);
         this.outputContainer.add(this.mBodyWidget.container, BorderLayout.CENTER);

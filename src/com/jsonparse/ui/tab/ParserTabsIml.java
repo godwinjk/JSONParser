@@ -7,14 +7,13 @@ import com.intellij.openapi.wm.IdeFocusManager;
 import com.intellij.ui.tabs.TabInfo;
 import com.intellij.ui.tabs.TabsListener;
 import com.intellij.ui.tabs.impl.JBEditorTabs;
+import com.jsonparse.common.Logger;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 
 /**
- * Tabs管理实现
- * <p>
- * Created by fingerart on 17/2/27.
+ *
  */
 public class ParserTabsIml implements IParserTabs {
     private JBEditorTabs mTabs;
@@ -88,16 +87,23 @@ public class ParserTabsIml implements IParserTabs {
         return new TabsListener() {
             @Override
             public void selectionChanged(TabInfo tabInfo, TabInfo tabInfo1) {
-
+                try {
+                    Logger.i("On before Tab selection change :"+tabInfo.getText()+" to "+tabInfo1.getText());
+                }catch (Exception ignored){
+                }
             }
 
             @Override
             public void beforeSelectionChanged(TabInfo tabInfo, TabInfo tabInfo1) {
+                try {
+                    Logger.i("On before Tab selection change :"+tabInfo.getText()+" to "+tabInfo1.getText());
+                }catch (Exception ignored){
+                }
 
             }
 
             @Override
-            public void tabRemoved(TabInfo tabInfo) {
+            public void tabRemoved(@NotNull TabInfo tabInfo) {
                 if (mListener != null && getTabCount() == 1) {
                     mListener.onLast();
                 }

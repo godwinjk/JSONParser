@@ -5,11 +5,9 @@ import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationListener;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
-import com.intellij.openapi.actionSystem.ActionManager;
-import com.intellij.openapi.actionSystem.ActionPlaces;
-import com.intellij.openapi.actionSystem.ActionToolbar;
-import com.intellij.openapi.actionSystem.DefaultActionGroup;
+import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.components.AbstractProjectComponent;
+import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
@@ -32,11 +30,13 @@ import javax.swing.*;
  *
  * @author : Godwin Joseph Kurinjikattu
  */
-public class ParserComponent extends AbstractProjectComponent {
-    long time = 0;
+public class ParserComponent implements ProjectComponent {
+    private long time = 0;
+    private boolean isShown = false;
+    private final Project myProject;
 
     protected ParserComponent(Project project) {
-        super(project);
+        myProject = project;
     }
 
     public static ParserComponent getInstance(Project project) {
@@ -74,10 +74,12 @@ public class ParserComponent extends AbstractProjectComponent {
 
     private ActionToolbar createToolBar(IParserWidget debuggerWidget) {
         DefaultActionGroup group = new DefaultActionGroup();
+
         group.add(new AddTabAction(debuggerWidget));
         group.add(new CloseTabAction(debuggerWidget));
+//        group.add(new NewWindowAction(debuggerWidget));
 
-        ActionToolbar toolbar = ActionManager.getInstance().createActionToolbar(ActionPlaces.UNKNOWN, group, false);
+        ActionToolbar toolbar = ActionManager.getInstance().createActionToolbar(ActionPlaces.TOOLBAR, group, false);
         toolbar.setOrientation(SwingConstants.VERTICAL);
         return toolbar;
     }
@@ -97,7 +99,8 @@ public class ParserComponent extends AbstractProjectComponent {
                         Logger.d("DebuggerComponent.isVisible ContentCount>0");
                         initParser(toolWindow);
                     } else if (!toolWindow.isVisible()) {
-                        if (time <= 0 || time < System.currentTimeMillis() - 3600000) {
+                        if (!isShown && (time <= 0 || time < System.currentTimeMillis() - 3600000)) {
+                            isShown = true;
                             time = System.currentTimeMillis();
                             Notifications.Bus.notify(new Notification(
                                     "Json Parser",
@@ -106,7 +109,6 @@ public class ParserComponent extends AbstractProjectComponent {
                                     NotificationType.INFORMATION,
                                     new NotificationListener.UrlOpeningListener(true)));
                         }
-
                     }
                 }
             }

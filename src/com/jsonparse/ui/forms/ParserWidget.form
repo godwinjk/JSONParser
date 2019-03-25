@@ -27,7 +27,8 @@
               <splitpane position="left"/>
             </constraints>
             <properties>
-              <toolTipText value="Enter valid json"/>
+              <minimumSize width="-1" height="150"/>
+              <toolTipText value="Enter raw json"/>
             </properties>
             <border type="none" title="Enter JSON string"/>
             <children>

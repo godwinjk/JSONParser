@@ -27,10 +27,13 @@ import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IElementType;
+import com.jsonparse.ui.IParserWidget;
 import com.jsonparse.ui.TreeNodeCreator;
 import com.jsonparse.ui.action.JBRadioAction;
+import com.jsonparse.ui.action.NewWindowAction;
 import org.apache.http.util.TextUtils;
 
+import javax.annotation.Nonnull;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -65,8 +68,9 @@ public class ParserBodyWidget {
     private Project mProject;
 
     private ActionListener previewTypeListener = e -> mPreviewTypeCardLayout.show(previewTypeContainer, e.getActionCommand());
+    private IParserWidget parserWidget;
 
-    public ParserBodyWidget(Project mProject) {
+    public ParserBodyWidget(Project mProject, IParserWidget parserWidget) {
         this.mProject = mProject;
 
         this.mProject = mProject;
@@ -76,25 +80,24 @@ public class ParserBodyWidget {
         prettyContainer.add(prettyEditor.getComponent(), BorderLayout.CENTER);
         rawEditor = createEditor();
         rawContainer.add(rawEditor.getComponent(), BorderLayout.CENTER);
-
+        this.parserWidget = parserWidget;
         changeIcon();
         setEmptyTree();
+
+        setUiComponents();
     }
 
-    private void createUIComponents() {
+    private void setUiComponents() {
         simpleToolWindowPanel1 = new SimpleToolWindowPanel(true, true);
-
-//        JBComboBoxAction comboBoxAction = createFormatTypeComboAction();
         buttonGroup = new ButtonGroup();
         ActionGroup group = new DefaultActionGroup(
                 new JBRadioAction("Pretty", "Pretty", buttonGroup, previewTypeListener, true),
                 new JBRadioAction("Raw", "Raw", buttonGroup, previewTypeListener),
                 new JBRadioAction("Tree", "Tree", buttonGroup, previewTypeListener),
-//                new JBRadioAction("Preview", "Preview", buttonGroup, previewTypeListener),
-//                comboBoxAction,
                 new AnAction("Use Soft Wraps", "Toggle using soft wraps in current editor", AllIcons.Actions.ToggleSoftWrap) {
                     @Override
-                    public void actionPerformed(AnActionEvent anActionEvent) {
+                    public void actionPerformed(@Nonnull AnActionEvent anActionEvent) {
+
                         String actionCommand = buttonGroup.getSelection().getActionCommand();
                         if ("Pretty".equalsIgnoreCase(actionCommand)) {
                             EditorSettings settings = prettyEditor.getSettings();
@@ -104,12 +107,18 @@ public class ParserBodyWidget {
                             settings.setUseSoftWraps(!settings.isUseSoftWraps());
                         }
                     }
-                });
+                },
+                new NewWindowAction(parserWidget)
+        );
 
-        ActionToolbar toolbar = ActionManager.getInstance().createActionToolbar(ActionPlaces.UNKNOWN, group, true);
+        ActionToolbar toolbar = ActionManager.getInstance().createActionToolbar(ActionPlaces.TOOLBAR, group, true);
+
         simpleToolWindowPanel1.setToolbar(toolbar.getComponent());
         simpleToolWindowPanel1.setContent(new JPanel(new BorderLayout()));
-//        toolBarContainer.add(simpleToolWindowPanel1);
+    }
+
+    private void createUIComponents() {
+        setUiComponents();
     }
 
     private Editor createEditor() {
@@ -183,7 +192,7 @@ public class ParserBodyWidget {
             }
 
             WriteCommandAction.runWriteCommandAction(mProject, () -> {
-                Document document= prettyEditor.getDocument();
+                Document document = prettyEditor.getDocument();
                 document.setReadOnly(false);
                 document.setText(prettyJsonString);
                 document.setReadOnly(true);
@@ -200,7 +209,7 @@ public class ParserBodyWidget {
                 }
                 String finalMessage = message;
                 WriteCommandAction.runWriteCommandAction(mProject, () -> {
-                    Document document= prettyEditor.getDocument();
+                    Document document = prettyEditor.getDocument();
                     document.setReadOnly(false);
                     document.setText(text + "\n\n\n" + finalMessage);
                     document.setReadOnly(true);
@@ -234,7 +243,7 @@ public class ParserBodyWidget {
             outputTree.setModel(model);
             expandAllNodes(outputTree, 0, outputTree.getRowCount());
         } catch (Exception e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -250,6 +259,7 @@ public class ParserBodyWidget {
         Icon icon = new ImageIcon();
         renderer.setClosedIcon(icon);
         renderer.setOpenIcon(icon);
+        renderer.setLeafIcon(icon);
     }
 
     private void setEmptyTree() {
