@@ -27,10 +27,11 @@ import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IElementType;
-import com.jsonparse.ui.IParserWidget;
+import com.jsonparse.common.GetComponentCallback;
 import com.jsonparse.ui.TreeNodeCreator;
 import com.jsonparse.ui.action.JBRadioAction;
 import com.jsonparse.ui.action.NewWindowAction;
+import com.jsonparse.ui.helper.SubstringHelper;
 import org.apache.http.util.TextUtils;
 
 import javax.annotation.Nonnull;
@@ -46,7 +47,7 @@ import java.awt.event.ActionListener;
  *
  * @author : Godwin Joseph Kurinjikattu
  */
-public class ParserBodyWidget {
+public class ParserBodyWidget implements GetComponentCallback {
     public JPanel container;
     private JPanel previewTypeContainer;
     private JPanel prettyContainer;
@@ -68,19 +69,20 @@ public class ParserBodyWidget {
     private Project mProject;
 
     private ActionListener previewTypeListener = e -> mPreviewTypeCardLayout.show(previewTypeContainer, e.getActionCommand());
-    private IParserWidget parserWidget;
 
-    public ParserBodyWidget(Project mProject, IParserWidget parserWidget) {
-        this.mProject = mProject;
+    private AnAction[] actions = null;
+    private ParserWidget mParserWidget;
 
+    public ParserBodyWidget(Project mProject, ParserWidget parserWidget) {
         this.mProject = mProject;
+        this.mParserWidget = parserWidget;
+
         mPreviewTypeCardLayout = ((CardLayout) previewTypeContainer.getLayout());
 
         prettyEditor = createEditor();
         prettyContainer.add(prettyEditor.getComponent(), BorderLayout.CENTER);
         rawEditor = createEditor();
         rawContainer.add(rawEditor.getComponent(), BorderLayout.CENTER);
-        this.parserWidget = parserWidget;
         changeIcon();
         setEmptyTree();
 
@@ -90,31 +92,36 @@ public class ParserBodyWidget {
     private void setUiComponents() {
         simpleToolWindowPanel1 = new SimpleToolWindowPanel(true, true);
         buttonGroup = new ButtonGroup();
-        ActionGroup group = new DefaultActionGroup(
-                new JBRadioAction("Pretty", "Pretty", buttonGroup, previewTypeListener, true),
-                new JBRadioAction("Raw", "Raw", buttonGroup, previewTypeListener),
-                new JBRadioAction("Tree", "Tree", buttonGroup, previewTypeListener),
-                new AnAction("Use Soft Wraps", "Toggle using soft wraps in current editor", AllIcons.Actions.ToggleSoftWrap) {
-                    @Override
-                    public void actionPerformed(@Nonnull AnActionEvent anActionEvent) {
+        if (null == actions) {
+            actions = new AnAction[4];
+            actions[0] = new JBRadioAction("Pretty", "Pretty", buttonGroup, previewTypeListener, true);
+            actions[1] = new JBRadioAction("Raw", "Raw", buttonGroup, previewTypeListener);
+            actions[2] = new JBRadioAction("Tree", "Tree", buttonGroup, previewTypeListener);
+            actions[3] = new AnAction("Use Soft Wraps", "Toggle using soft wraps in current editor", AllIcons.Actions.ToggleSoftWrap) {
+                @Override
+                public void actionPerformed(@Nonnull AnActionEvent anActionEvent) {
 
-                        String actionCommand = buttonGroup.getSelection().getActionCommand();
-                        if ("Pretty".equalsIgnoreCase(actionCommand)) {
-                            EditorSettings settings = prettyEditor.getSettings();
-                            settings.setUseSoftWraps(!settings.isUseSoftWraps());
-                        } else if ("Raw".equalsIgnoreCase(actionCommand)) {
-                            EditorSettings settings = rawEditor.getSettings();
-                            settings.setUseSoftWraps(!settings.isUseSoftWraps());
-                        }
+                    String actionCommand = buttonGroup.getSelection().getActionCommand();
+                    if ("Pretty".equalsIgnoreCase(actionCommand)) {
+                        EditorSettings settings = prettyEditor.getSettings();
+                        settings.setUseSoftWraps(!settings.isUseSoftWraps());
+                    } else if ("Raw".equalsIgnoreCase(actionCommand)) {
+                        EditorSettings settings = rawEditor.getSettings();
+                        settings.setUseSoftWraps(!settings.isUseSoftWraps());
                     }
-                },
-                new NewWindowAction(parserWidget)
-        );
+                }
+            };
+//            actions[4] = new NewWindowAction(this);
+        }
+
+        ActionGroup group = new DefaultActionGroup(actions);
 
         ActionToolbar toolbar = ActionManager.getInstance().createActionToolbar(ActionPlaces.TOOLBAR, group, true);
 
         simpleToolWindowPanel1.setToolbar(toolbar.getComponent());
-        simpleToolWindowPanel1.setContent(new JPanel(new BorderLayout()));
+        simpleToolWindowPanel1.setContent(new
+
+                JPanel(new BorderLayout()));
     }
 
     private void createUIComponents() {
@@ -211,7 +218,8 @@ public class ParserBodyWidget {
                 WriteCommandAction.runWriteCommandAction(mProject, () -> {
                     Document document = prettyEditor.getDocument();
                     document.setReadOnly(false);
-                    document.setText(text + "\n\n\n" + finalMessage);
+                    SubstringHelper.LineData lineData = SubstringHelper.process(text, finalMessage);
+                    document.setText(text + "\n\n\n" + "Error in line " + lineData.getLineNumber() + ":" + lineData.getLineOffset());
                     document.setReadOnly(true);
                 });
                 LanguageFileType fileType = getFileType();
@@ -221,7 +229,7 @@ public class ParserBodyWidget {
         }
     }
 
-    public void showRaw(String text) {
+    void showRaw(String text) {
         if (null == text)
             return;
         try {
@@ -243,7 +251,7 @@ public class ParserBodyWidget {
             outputTree.setModel(model);
             expandAllNodes(outputTree, 0, outputTree.getRowCount());
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 
@@ -267,7 +275,6 @@ public class ParserBodyWidget {
 
         DefaultTreeModel model = new DefaultTreeModel(root);
         outputTree.setModel(model);
-
     }
 
     private void expandAllNodes(JTree tree, int startingIndex, int rowCount) {
@@ -278,5 +285,10 @@ public class ParserBodyWidget {
         if (tree.getRowCount() != rowCount) {
             expandAllNodes(tree, rowCount, tree.getRowCount());
         }
+    }
+
+    @Override
+    public Component getComponent() {
+        return mParserWidget.getContainer();
     }
 }

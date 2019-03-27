@@ -64,9 +64,7 @@ public class ParserWidget extends JPanel implements IParserWidget {
 
     @Override
     public void createParserSession() {
-        JComponent innerDebuggerWidget = createInnerDebuggerWidget();
-//
-        setupTabs(innerDebuggerWidget);
+        setupTabs(createInnerDebuggerWidget());
     }
 
     private void setupTabs(JComponent nextComponent) {
@@ -97,5 +95,10 @@ public class ParserWidget extends JPanel implements IParserWidget {
     @Override
     public JComponent getComponent() {
         return mPanel;
+    }
+
+    @Override
+    public JComponent getNewComponent() {
+        return createInnerDebuggerWidget();
     }
 }

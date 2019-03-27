@@ -15,15 +15,18 @@ import com.intellij.openapi.wm.ex.ToolWindowManagerEx;
 import com.intellij.openapi.wm.ex.ToolWindowManagerListener;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
+import com.jsonparse.common.GetComponentCallback;
 import com.jsonparse.common.Logger;
 import com.jsonparse.ui.IParserWidget;
 import com.jsonparse.ui.ParserToolWindowPanel;
 import com.jsonparse.ui.ParserWidget;
 import com.jsonparse.ui.action.AddTabAction;
 import com.jsonparse.ui.action.CloseTabAction;
+import com.jsonparse.ui.action.NewWindowAction;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by Godwin on 4/21/2018 12:32 PM for json.
@@ -77,7 +80,7 @@ public class ParserComponent implements ProjectComponent {
 
         group.add(new AddTabAction(debuggerWidget));
         group.add(new CloseTabAction(debuggerWidget));
-//        group.add(new NewWindowAction(debuggerWidget));
+        group.add(new NewWindowAction(debuggerWidget));
 
         ActionToolbar toolbar = ActionManager.getInstance().createActionToolbar(ActionPlaces.TOOLBAR, group, false);
         toolbar.setOrientation(SwingConstants.VERTICAL);

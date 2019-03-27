@@ -3,32 +3,45 @@ package com.jsonparse.ui.action;
 import com.intellij.icons.AllIcons;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.ui.components.JBPanel;
-import com.jsonparse.ui.IParserWidget;
 
+import com.intellij.openapi.ui.popup.JBPopupFactory;
+import com.jsonparse.ui.IParserWidget;
+import com.jsonparse.ui.forms.ParserWindow;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 
 public class NewWindowAction extends AnAction {
-    private final IParserWidget mParserWidget;
-    private JFrame frame;
 
-    public NewWindowAction(IParserWidget parserWidget) {
+    private IParserWidget mParserWidget;
+    private int count = 0;
+
+    public NewWindowAction(IParserWidget iParserWidget) {
         super("Open in new window", "Open in new window", AllIcons.Actions.ChangeView);
-        mParserWidget = parserWidget;
-
+        this.mParserWidget = iParserWidget;
     }
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
-        if (frame == null && mParserWidget != null) {
-            frame = new JFrame();
-            frame.setLayout(new BorderLayout());
-            frame.add(mParserWidget.getComponent(), BorderLayout.CENTER);
 
-            frame.setVisible(true);
+        if (mParserWidget != null && mParserWidget.getComponent() != null) {
+            ParserWindow window = new ParserWindow(mParserWidget, "Json Parser " + count);
+            count++;
+            window.setWindowAdapter(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    super.windowClosing(e);
+                    if (count > 0) count--;
+                }
+            });
         }
+    }
+
+    @Override
+    public void update(@NotNull AnActionEvent e) {
+        super.update(e);
+        e.getPresentation().setVisible(count <= 10);
     }
 }

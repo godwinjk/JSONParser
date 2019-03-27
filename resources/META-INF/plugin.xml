@@ -1,11 +1,14 @@
 <idea-plugin>
     <id>com.godwin.json.parser</id>
     <name>Json Parser</name>
-    <version>1.3</version>
-    <vendor email="godwinjoseph.k.com">Godwin</vendor>
+    <version>1.4.1</version>
+    <vendor email="godwinjoseph.k@gmail.com">Godwin Joseph</vendor>
 
     <description><![CDATA[
-      Simple JSON Parser is an IntelliJ IDE plugin for validation and formatting JSON string<br>
+      Tired of opening the browser for formatting and validating JSON?
+Why don't you install JSON Parser and do it inside IDE with offline support?
+JSON Parser is a lightweight plugin for validating and formatting JSON strings.
+Install and spread the word :)<br>
     ]]></description>
 
     <change-notes><![CDATA[
@@ -24,7 +27,15 @@
       1. Error message if not a valid json
       2. Bug fixes
       <h2>Version 1.3</h1>
-      1. Bug fixes
+      <ul>
+            <li>Bug fixes</li>
+      </ul>
+       <h2>Version 1.4</h1>
+      <ul>
+            <li>Tabs added</li>
+            <li>Menu item added under Edit menu (ctrl shift alt J)</li>
+            <li>Rate/ donate notification issue fixed</li>
+      </ul>
     ]]>
     </change-notes>
 
@@ -33,7 +44,7 @@
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
-    <!-- uncomment to enable plugin in all products
+    <!-- uncomment to enable plugin in all productsRate/ donate popup issue
 
     -->
     <depends>com.intellij.modules.lang</depends>

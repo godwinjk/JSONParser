@@ -15,4 +15,6 @@ public interface IParserWidget {
     int getTabCount();
 
     JComponent getComponent();
+
+    JComponent getNewComponent();
 }

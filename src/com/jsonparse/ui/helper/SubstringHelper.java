@@ -11,12 +11,12 @@ public class SubstringHelper {
 
     public static LineData process(String rawData, String errorData) {
         if (!TextUtils.isEmpty(rawData)) {
-            return new LineData(0, 15);
+            return new LineData(getLine(errorData), getLineOffset(errorData));
         }
         return null;
     }
 
-    private int getLine(String errorData) {
+    private static int getLine(String errorData) {
         if (TextUtils.isEmpty(errorData))
             return 0;
         String[] arr = errorData.split(" ");
@@ -33,7 +33,7 @@ public class SubstringHelper {
         return 0;
     }
 
-    private int getLineOffset(String errorData) {
+    private static int getLineOffset(String errorData) {
         if (TextUtils.isEmpty(errorData))
             return 0;
         String[] arr = errorData.split(" ");

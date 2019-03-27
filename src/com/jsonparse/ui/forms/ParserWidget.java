@@ -43,7 +43,7 @@ public class ParserWidget {
 
         this.mInputEditor = createEditor();
 
-        this.mBodyWidget = new ParserBodyWidget(mProject,parserWidget);
+        this.mBodyWidget = new ParserBodyWidget(mProject,this);
 
         this.inputEditorContainer.add(mInputEditor.getComponent(), BorderLayout.CENTER);
         this.outputContainer.add(this.mBodyWidget.container, BorderLayout.CENTER);
@@ -92,11 +92,9 @@ public class ParserWidget {
     }
 
     private void showBody(String jsonString) {
-
         mBodyWidget.showPretty(jsonString);
         mBodyWidget.showRaw(jsonString);
         mBodyWidget.showTree(jsonString);
-
     }
 
     public JPanel getContainer() {
