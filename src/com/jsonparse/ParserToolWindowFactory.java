@@ -18,6 +18,7 @@ public class ParserToolWindowFactory implements ToolWindowFactory {
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         ParserComponent apiDebuggerView = ParserComponent.getInstance(project);
         apiDebuggerView.initParser(toolWindow);
+
     }
 
 }

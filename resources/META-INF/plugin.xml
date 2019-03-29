@@ -36,6 +36,10 @@ Install and spread the word :)<br>
             <li>Menu item added under Edit menu (ctrl shift alt J)</li>
             <li>Rate/ donate notification issue fixed</li>
       </ul>
+      <h2>Version 1.4.1</h1>
+      <ul>
+            <li>Ui Bug fix</li>
+      </ul>
     ]]>
     </change-notes>
 
@@ -48,6 +52,7 @@ Install and spread the word :)<br>
 
     -->
     <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->

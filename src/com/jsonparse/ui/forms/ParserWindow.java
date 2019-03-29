@@ -11,9 +11,11 @@ public class ParserWindow extends JFrame {
 
     private IParserWidget mParserWidget;
     private WindowAdapter mWindowAdapter;
+    private int count;
 
-   public ParserWindow(IParserWidget parserWidget,String title) {
+    public ParserWindow(IParserWidget parserWidget, String title, int count) {
         this.mParserWidget = parserWidget;
+        this.count = count;
 
         setupView();
         setTitle(title);
@@ -26,8 +28,8 @@ public class ParserWindow extends JFrame {
     private void setupView() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        int height = screenSize.height  / 2;
         int width = screenSize.width / 4;
+        int height = screenSize.height / 2;
 
         height = height == 0 ? 500 : height;
         width = width == 0 ? 300 : width;
@@ -36,6 +38,10 @@ public class ParserWindow extends JFrame {
         add(mParserWidget.getNewComponent(), BorderLayout.CENTER);
         setSize(new Dimension(width, height));
 
+        int locationWidth = (screenSize.width / 2 - width / 2) + count * 20;
+        int locationHeight = (screenSize.height / 2 - height / 2) + count * 20;
+
+        setLocation(locationWidth, locationHeight);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

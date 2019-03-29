@@ -6,9 +6,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.jsonparse.ui.IParserWidget;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Created by fingerart on 17/2/20.
- */
+
 public class AddTabAction extends AnAction {
 
     private final IParserWidget mParserWidget;
@@ -27,6 +25,6 @@ public class AddTabAction extends AnAction {
     @Override
     public void update(@NotNull AnActionEvent e) {
         super.update(e);
-        e.getPresentation().setVisible(mParserWidget.getTabCount() <= 10);
+        e.getPresentation().setEnabled(mParserWidget.getTabCount() <= 10);
     }
 }

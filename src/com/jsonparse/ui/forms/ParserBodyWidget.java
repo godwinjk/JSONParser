@@ -87,41 +87,43 @@ public class ParserBodyWidget implements GetComponentCallback {
         setEmptyTree();
 
         setUiComponents();
+
     }
 
     private void setUiComponents() {
         simpleToolWindowPanel1 = new SimpleToolWindowPanel(true, true);
         buttonGroup = new ButtonGroup();
-        if (null == actions) {
-            actions = new AnAction[4];
-            actions[0] = new JBRadioAction("Pretty", "Pretty", buttonGroup, previewTypeListener, true);
-            actions[1] = new JBRadioAction("Raw", "Raw", buttonGroup, previewTypeListener);
-            actions[2] = new JBRadioAction("Tree", "Tree", buttonGroup, previewTypeListener);
-            actions[3] = new AnAction("Use Soft Wraps", "Toggle using soft wraps in current editor", AllIcons.Actions.ToggleSoftWrap) {
-                @Override
-                public void actionPerformed(@Nonnull AnActionEvent anActionEvent) {
-
-                    String actionCommand = buttonGroup.getSelection().getActionCommand();
-                    if ("Pretty".equalsIgnoreCase(actionCommand)) {
-                        EditorSettings settings = prettyEditor.getSettings();
-                        settings.setUseSoftWraps(!settings.isUseSoftWraps());
-                    } else if ("Raw".equalsIgnoreCase(actionCommand)) {
-                        EditorSettings settings = rawEditor.getSettings();
-                        settings.setUseSoftWraps(!settings.isUseSoftWraps());
+        actions = new AnAction[4];
+        actions[0] = new JBRadioAction("Pretty", "Pretty", buttonGroup, previewTypeListener, true);
+        actions[1] = new JBRadioAction("Raw", "Raw", buttonGroup, previewTypeListener);
+        actions[2] = new JBRadioAction("Tree", "Tree", buttonGroup, previewTypeListener);
+        actions[3] = new AnAction("Use Soft Wraps", "Toggle using soft wraps in current editor", AllIcons.Actions.ToggleSoftWrap) {
+            @Override
+            public void actionPerformed(@Nonnull AnActionEvent anActionEvent) {
+                EventQueue.invokeLater(() -> {
+                    try {
+                        if (buttonGroup.getSelection() != null) {
+                            String actionCommand = buttonGroup.getSelection().getActionCommand();
+                            if ("Pretty".equalsIgnoreCase(actionCommand)) {
+                                EditorSettings settings = prettyEditor.getSettings();
+                                settings.setUseSoftWraps(!settings.isUseSoftWraps());
+                            } else if ("Raw".equalsIgnoreCase(actionCommand)) {
+                                EditorSettings settings = rawEditor.getSettings();
+                                settings.setUseSoftWraps(!settings.isUseSoftWraps());
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                }
-            };
-//            actions[4] = new NewWindowAction(this);
-        }
+                });
+            }
+        };
 
         ActionGroup group = new DefaultActionGroup(actions);
-
         ActionToolbar toolbar = ActionManager.getInstance().createActionToolbar(ActionPlaces.TOOLBAR, group, true);
 
         simpleToolWindowPanel1.setToolbar(toolbar.getComponent());
-        simpleToolWindowPanel1.setContent(new
-
-                JPanel(new BorderLayout()));
+        simpleToolWindowPanel1.setContent(new JPanel(new BorderLayout()));
     }
 
     private void createUIComponents() {
